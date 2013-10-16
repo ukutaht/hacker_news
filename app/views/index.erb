@@ -1,23 +1,17 @@
-<div class="container">
-  <h1>Welcome to Sinatra!</h1>
-  <p>Hello, world!</p>
-
-  <table>
-    <tr>
-      <th>File Description</th>
-      <th>File Location</th>
-    </tr>
-    <tr>
-      <td>This view file</td>
-      <td><code><%= __FILE__.gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The layout file</td>
-      <td><code><%= File.expand_path('../layout.erb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The current controller</td>
-      <td><code><%= File.expand_path('../../controllers/index.rb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-  </table>
-</div>
+  <ol class="posts">
+    <% @all_posts.each do |post| %>
+      <li class="post">
+        <p class="title">
+          <% unless post.url.blank? %>
+            <a class="title-link" href="<%= post.url %>"><%= post.title %></a>
+          <% else %>
+            <a class="title-link" href="/posts/<%= post.id %>"><%= post.title %></a>
+          <% end %>
+        </p>
+      <span class="subtext"> 
+        by <%= post.user.user_name %>
+        <a href="/posts/<%= post.id %>"> comments(<%= post.comments.count %>)</a>
+      </span>
+      </li>
+    <% end %>
+  </ol>

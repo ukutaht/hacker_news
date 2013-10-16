@@ -18,6 +18,25 @@
   <title></title>
 </head>
 <body>
-  <%= yield %>
+<div class="container">
+  <nav class="main-nav">
+    <img src="https://news.ycombinator.com/y18.gif"/>
+    <a class="home-link" href='/'>Hacker News</a>
+    <a href="/new">new</a> <span> | </span>
+    <a href="/new">threads</a> <span> | </span>
+    <a href="/new">comments</a> <span> | </span>
+    <a href="/new">ask</a> <span> | </span>
+    <a href="/new">jobs</a> <span> | </span>
+    <a href="/new">submit</a>
+    <div class="login-status">
+      <% if authenticated? %>
+        <a href="/logout">logout</a>
+      <% else %>
+        <a href="/login">login</a>
+      <% end %>
+    </div>
+  </nav>
+    <%= yield %>
+</div>
 </body>
 </html>
